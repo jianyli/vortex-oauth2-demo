@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: oauth2-server
+  datasource:
+    url: jdbc:mysql://${mysqlServer.ip}:${mysqlServer.port}/spring_oauth2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowMultiQueries=true
+    username: ${mysqlServer.name}
+    password: ${mysqlServer.password}
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 3
+      min-idle: 3
+      max-active: 10
+      max-wait: 60000
+      stat-view-servlet:
+        login-username: root
+        login-password: 1234
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 2000
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    #redis
+    redis:
+      database: 0
+      host: ${redisServer.ip}
+      port: ${redisServer.port}
+      password: ${redisServer.password}
+      pool:
+        jedis:
+          pool:
+            max-idle: 8
+            max-wait:
+            min-idle: 0
+      timeout: 5000
+server:
+  port: 8080
+
