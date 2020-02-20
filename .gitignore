@@ -1,0 +1,3 @@
+# Project exclude paths
+/oauth2-resource/target/
+/oauth2-server/target/
